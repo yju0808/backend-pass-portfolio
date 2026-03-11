@@ -8,7 +8,7 @@ export let options = {
 };
 
 export default function () {
-    let res = http.get('http://localhost:8080/api/chapter2/test/algorithm/string/concat?iterations=50000');
+    let res = http.get('https://congenial-barnacle-5x9gwgg77x5f79xg-8080.app.github.dev/api/chapter2/test/algorithm/string/concat?iterations=50000');
     check(res, {
         '응답 코드가 200인가?': (r) => r.status === 200,
     });

@@ -7,6 +7,8 @@ import ding.co.backendportfolio.chapter4._4_event_with_external.repository.Event
 import ding.co.backendportfolio.chapter4._4_event_with_external.service.EventExternalUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,7 +25,7 @@ public class ExternalApiUpdateRecoveryService {
     /**
      * 5분마다 실행되어 외부 ID가 없는 참가자들을 동기화
      */
-//    @Scheduled(fixedDelay = 300000) // 5분
+    @Scheduled(fixedDelay = 300000) // 5분
     public void recoverMissingExternalIds() {
         // 1. external_id가 없는 참가자들 조회
         List<EventWithLockParticipant> participantsWithoutExternalId = participantRepository.findByExternalIdIsNullAndCreatedAtBefore(

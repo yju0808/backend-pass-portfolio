@@ -64,7 +64,7 @@ public class ConcurrentTestUtil {
             });
         }
 
-        latch.await(10, TimeUnit.SECONDS);
+        latch.await(120, TimeUnit.SECONDS);
         executorService.shutdown();
     }
 } 

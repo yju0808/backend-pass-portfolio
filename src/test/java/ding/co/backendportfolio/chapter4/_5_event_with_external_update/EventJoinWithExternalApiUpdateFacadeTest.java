@@ -110,7 +110,7 @@ class EventJoinWithExternalApiUpdateFacadeTest {
         log.info("DB 업데이트 시도 횟수: {}", updateExternalIdCallCount.get());
         log.info("DB 업데이트 성공 횟수: {}", updateExternalIdSuccessCount.get());
         log.info("불일치 건수: {}", (externalApiCallCount.get() - updateExternalIdSuccessCount.get()));
-        log.info("DB 업데이트 성공률: {:.2f}%", 
-                (double) updateExternalIdSuccessCount.get() / updateExternalIdCallCount.get() * 100);
+        log.info("DB 업데이트 성공률: {}%", 
+                String.format("%.2f", (double) updateExternalIdSuccessCount.get() / updateExternalIdCallCount.get() * 100));
     }
 } 

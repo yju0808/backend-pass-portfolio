@@ -17,6 +17,17 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    junitVersion = '5.12.0'
+    junitPlatformVersion = '1.12.0'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.junit:junit-bom:${junitVersion}"
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -47,6 +58,9 @@ dependencies {
     // 테스트에서 Lombok 사용을 위한 의존성 추가
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
+    
+    // JUnit Platform Launcher (VS Code Test Runner 호환)
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 }
 
@@ -57,6 +71,16 @@ jacoco {
 test {
     finalizedBy jacocoTestReport
     useJUnitPlatform()
+    
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+        showExceptions true
+        showCauses true
+        showStackTraces true
+        showStandardStreams = true
+    }
+    
     jacoco {
         enabled = true
         destinationFile = file("${buildDir}/jacoco/test.exec")

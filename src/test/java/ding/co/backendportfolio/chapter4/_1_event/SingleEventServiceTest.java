@@ -122,4 +122,5 @@ class SingleEventServiceTest {
         assertThat(updatedEvent.getCurrentParticipants()).isNotEqualTo(successCount.get());
         assertThat(updatedEvent.getCurrentParticipants()).isLessThan(successCount.get());
     }
+
 } 

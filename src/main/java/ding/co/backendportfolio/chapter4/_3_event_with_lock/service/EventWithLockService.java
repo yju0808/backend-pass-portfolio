@@ -10,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -55,7 +56,7 @@ public class EventWithLockService {
     }
 
     // TODO: Named Lock 을 위해 아래 주석을 해제해야함
-    //    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void joinEventWithNamedLock(Long eventId, Long memberId) {
         EventWithLock event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new EntityNotFoundException("이벤트를 찾을 수 없습니다."));

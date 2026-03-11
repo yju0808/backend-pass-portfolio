@@ -32,7 +32,7 @@ public class EventJoinService {
 
         // 2. 이벤트 참가자 수 증가 (내부적으로 참가 가능 여부 검증)
         event.increaseParticipants();
-        eventRepository.save(event);
+        eventRepository.saveAndFlush(event);
 
         // 3. 참가자 정보 저장
         EventParticipant participant = EventParticipant.builder()
